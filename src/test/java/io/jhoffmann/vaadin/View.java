@@ -1,4 +1,4 @@
-package org.vaadin.addons.mygroup;
+package io.jhoffmann.vaadin;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -7,7 +7,7 @@ import com.vaadin.flow.router.Route;
 public class View extends VerticalLayout {
 
     public View() {
-        AxaInputText axaInputText = new AxaInputText();
-        add(axaInputText);
+        TrixEditor editor = new TrixEditor("Label");
+        add(editor);
     }
 }

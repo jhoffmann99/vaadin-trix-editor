@@ -3,18 +3,18 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.vaadin.addons.mygroup</groupId>
-    <artifactId>axa-input-text</artifactId>
+    <groupId>io.jhoffmann.vaadin</groupId>
+    <artifactId>trix-editor</artifactId>
 
     <!-- Add-on version number. Snapshot is good for development,
     but when publishing, make sure to use semantic version number like '1.0.0'.
     See https://semver.org/ -->
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <!-- Change this. The name is used when you publish to Vaadin Directory.
     Make sure to use a unique name by first searching at https://vaadin.com/directory -->
-    <name>AXA Input Text</name>
-    <description>Integration of axa-input-text for Vaadin platform</description>
+    <name>Trix Editor</name>
+    <description>Integration of Trix Editor for Vaadin platform</description>
 
     <properties>
 
@@ -26,15 +26,15 @@
         <!-- Java version your add-on supports.
         This should align with the Vaadin version.
         E.g. Java 11 for Vaadin 23 and Java 8 for Vaadin 14. -->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <jetty.version>9.4.50.v20221201</jetty.version>
 
         <!-- Vaadin add-on metadata -->
-        <vaadin.addon.owner>Add-on Author Name</vaadin.addon.owner>
+        <vaadin.addon.owner>Jürgen Hoffmann</vaadin.addon.owner>
         <vaadin.addon.license>Apache License 2.0</vaadin.addon.license>        
         <vaadin.addon.name>${project.name}</vaadin.addon.name>
         <vaadin.addon.jar>${project.build.finalName}.${project.packaging}</vaadin.addon.jar>
@@ -43,7 +43,7 @@
     <organization>
         <!-- Name of the add-on author and URL.
         Update these to match your own name and website. -->
-        <name>Add-on Author Name</name>
+        <name>Jürgen Hoffmann</name>
         <url>https://vaadin.com/directory</url>
     </organization>
     <licenses>

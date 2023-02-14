@@ -1,0 +1,16 @@
+trix-editor {
+  background: rgba(33,33,33,0.1);
+  border: none;
+  border-radius: .25rem;
+  transition: background .1s ease-in-out;
+}
+
+trix-editor:hover:not(:focus) {
+  background: rgba(33, 33, 33, 0.2);
+}
+
+.trix-label {
+  color: var(--lumo-secondary-text-color);
+  font-size: 14px;
+  font-weight: 500;
+}
