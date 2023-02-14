@@ -1,3 +1,9 @@
+# vaadin-trix-editor
+
+Integration of Trix editor for vaadin platform
+
+----------------
+
 # Add-on starter for a web component integration from NPM
 
 This is an example project for creating a Java wrapper for an existing Lit component that is available in npm.
