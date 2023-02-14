@@ -2,6 +2,7 @@
 
 Integration of Trix editor for vaadin platform
 
+![Component Screenshot](component-screenshot.png)
 
 ## Development instructions
 
