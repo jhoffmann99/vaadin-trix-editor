@@ -1,12 +1,10 @@
-package io.jhoffmann.vaadin;
+package org.vaadin.addons.jhoffmann99;
 
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.dom.Element;
-import com.vaadin.flow.dom.PropertyChangeEvent;
-import elemental.json.JsonValue;
 
 import java.util.UUID;
 
@@ -25,9 +23,12 @@ public class TrixEditor extends AbstractField<TrixEditor, String> {
         editorElement.executeJs("this.editor.loadHTML($0)", s);
     }
 
-    public TrixEditor(String labelText) {
-        super("");
-        labelElement.setText(labelText);
+    public  TrixEditor(String initialValue) {
+        this(initialValue, null);
+    }
+
+    public TrixEditor(String initialValue, String labelText) {
+        super(initialValue);
 
         hiddenInputElement.setAttribute("type", "hidden");
         String inputid = UUID.randomUUID().toString();
@@ -46,6 +47,11 @@ public class TrixEditor extends AbstractField<TrixEditor, String> {
                 .addEventData("event.target.value")
                 .debounce(1000)
         ;
+
+        if(labelText != null){
+            labelElement.setText(labelText);
+            getElement().appendChild(labelElement);
+        }
 
         getElement().appendChild(hiddenInputElement, editorElement);
     }

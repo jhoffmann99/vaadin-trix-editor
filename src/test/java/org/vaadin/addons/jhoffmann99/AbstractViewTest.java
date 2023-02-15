@@ -1,4 +1,4 @@
-package io.jhoffmann.vaadin;
+package org.vaadin.addons.jhoffmann99;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Before;

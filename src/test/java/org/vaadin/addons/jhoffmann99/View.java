@@ -1,4 +1,4 @@
-package io.jhoffmann.vaadin;
+package org.vaadin.addons.jhoffmann99;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
@@ -9,9 +9,7 @@ import com.vaadin.flow.router.Route;
 public class View extends VerticalLayout {
 
     public View() {
-        TrixEditor editor = new TrixEditor("Label");
-
-        editor.setValue("Initial <i>content</i>");
+        TrixEditor editor = new TrixEditor("Initial Value", "Label");
 
         editor.addValueChangeListener(e -> {
             Notification.show("Value has changed: " + e.getValue());

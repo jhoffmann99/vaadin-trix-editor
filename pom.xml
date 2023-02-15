@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.jhoffmann.vaadin</groupId>
+    <groupId>org.vaadin.addons.jhoffmann99</groupId>
     <artifactId>trix-editor</artifactId>
 
     <!-- Add-on version number. Snapshot is good for development,
@@ -44,7 +44,7 @@
         <!-- Name of the add-on author and URL.
         Update these to match your own name and website. -->
         <name>Jürgen Hoffmann</name>
-        <url>https://vaadin.com/directory</url>
+        <url>https://github.com/jhoffmann99</url>
     </organization>
     <licenses>
         <license>
