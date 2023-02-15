@@ -6,6 +6,9 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.dom.PropertyChangeEvent;
+import elemental.json.JsonValue;
+
+import java.util.UUID;
 
 @Tag("jhoffmann-trix")
 @JsModule("trix/dist/trix.esm.min.js")
@@ -14,58 +17,12 @@ import com.vaadin.flow.dom.PropertyChangeEvent;
 @CssImport("./custom.css")
 public class TrixEditor extends AbstractField<TrixEditor, String> {
     Element labelElement = new Element("label");
-
     Element hiddenInputElement = new Element("input");
     Element editorElement = new Element("trix-editor");
 
-    private static PropertyDescriptor<String, String>
-            VALUE = PropertyDescriptors
-            .propertyWithDefault("value", "");
-
-    public String getValue() {
-        System.out.println("getValue()");
-        System.out.println("value:");
-        System.out.println(get(VALUE));
-        return get(VALUE);
-    }
-    public void setValue(String value) {
-        System.out.println("setValue()");
-        System.out.println("value:");
-        System.out.println(value);
-        set(VALUE, value);
-    }
-
     @Override
-    protected void setPresentationValue(String value) {
-        System.out.println("setPresentationValue");
-        System.out.println("value:");
-        System.out.println(value);
-        hiddenInputElement.setAttribute("value", value);
-
-        Element element = getElement();
-
-        if(value == null) {
-            element.removeProperty("text");
-        } else {
-            element.setProperty("text", value);
-        }
-
-    }
-
-    private void setupProperty(String name, String event) {
-        Element element = getElement();
-
-        element.addPropertyChangeListener(name, event,
-                this::propertyUpdated);
-    }
-
-    private void propertyUpdated(
-            PropertyChangeEvent event) {
-        Element element = getElement();
-
-        String text = element.getProperty("text", "");
-
-            setModelValue(text, event.isUserOriginated());
+    protected void setPresentationValue(String s) {
+        editorElement.executeJs("this.editor.loadHTML($0)", s);
     }
 
     public TrixEditor(String labelText) {
@@ -73,15 +30,24 @@ public class TrixEditor extends AbstractField<TrixEditor, String> {
         labelElement.setText(labelText);
 
         hiddenInputElement.setAttribute("type", "hidden");
-        hiddenInputElement.setAttribute("id", "x");
+        String inputid = UUID.randomUUID().toString();
+        hiddenInputElement.setAttribute("id", inputid);
 
-        editorElement.setAttribute("input", "x");
+        editorElement.setAttribute("input", inputid);
+        /*
+         * Impl note: if too much communication with this,
+         * either only delta's should be transferred or
+         * value should be only synhcronized "on blur"
+         */
+        editorElement.addEventListener("trix-change", e-> {
+            String value = e.getEventData().getString("event.target.value");
+            setModelValue(value, true);
+        })
+                .addEventData("event.target.value")
+                .debounce(1000)
+        ;
 
-        Element element = getElement();
-        element.appendChild(hiddenInputElement);
-        element.appendChild(editorElement);
-
-
-        setupProperty("text", "text-changed");
+        getElement().appendChild(hiddenInputElement, editorElement);
     }
+
 }
