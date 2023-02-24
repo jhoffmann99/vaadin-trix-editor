@@ -14,9 +14,9 @@ import java.util.UUID;
 @CssImport("trix/dist/trix.css")
 @CssImport("./custom.css")
 public class TrixEditor extends AbstractField<TrixEditor, String> {
-    Element labelElement = new Element("label");
-    Element hiddenInputElement = new Element("input");
-    Element editorElement = new Element("trix-editor");
+    private final Element labelElement;
+    private final Element hiddenInputElement;
+    private final Element editorElement;
 
     @Override
     protected void setPresentationValue(String s) {
@@ -29,6 +29,10 @@ public class TrixEditor extends AbstractField<TrixEditor, String> {
 
     public TrixEditor(String initialValue, String labelText) {
         super(initialValue);
+
+        labelElement = new Element("label");
+        hiddenInputElement = new Element("input");
+        editorElement = new Element("trix-editor");
 
         hiddenInputElement.setAttribute("type", "hidden");
         String inputid = UUID.randomUUID().toString();
@@ -48,12 +52,26 @@ public class TrixEditor extends AbstractField<TrixEditor, String> {
                 .debounce(1000)
         ;
 
+
+
+        editorElement.addEventListener("trix-attachment-add", e-> {
+           editorElement.executeJs("this.attachments = this.editorController.attachmentManager.getAttachments();");
+        });
+
         if(labelText != null){
             labelElement.setText(labelText);
             getElement().appendChild(labelElement);
         }
 
         getElement().appendChild(hiddenInputElement, editorElement);
+
+        // Workaround: as long as file attachments do not work, hide the button
+        disableFileAttachments();
     }
+
+    public void disableFileAttachments() {
+        getElement().executeJs("document.querySelector('.trix-button-group.trix-button-group--file-tools').style.display = 'none';");
+    }
+
 
 }
