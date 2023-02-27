@@ -9,7 +9,7 @@
     <!-- Add-on version number. Snapshot is good for development,
     but when publishing, make sure to use semantic version number like '1.0.0'.
     See https://semver.org/ -->
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <!-- Change this. The name is used when you publish to Vaadin Directory.
     Make sure to use a unique name by first searching at https://vaadin.com/directory -->
