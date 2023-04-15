@@ -23,6 +23,6 @@ Starting the test/demo server:
 
 You can create the zip package needed for [Vaadin Directory](https://vaadin.com/directory/) using
 ```
-./mvnw versions:set -DnewVersion=1.0.0 # You cannot publish snapshot versions 
+./mvnw versions:set -DnewVersion="1.0.0" # You cannot publish snapshot versions 
 ./mvnw install -Pdirectory
 ```
